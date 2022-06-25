@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // 해당 문자열이 포함된 수 찾기
-public class algorithm01 {
+public class Algorithm01 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
