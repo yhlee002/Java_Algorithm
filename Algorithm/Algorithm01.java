@@ -1,3 +1,5 @@
+package Algorithm;
+
 import java.util.Scanner;
 
 // 해당 문자열이 포함된 수 찾기

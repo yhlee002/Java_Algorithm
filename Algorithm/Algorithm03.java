@@ -1,3 +1,5 @@
+package Algorithm;
+
 import java.util.Scanner;
 
 // 문장에서 가장 긴 단어 출력(각 단어는 띄어쓰기를 통해 구분)

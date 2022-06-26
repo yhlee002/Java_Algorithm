@@ -1,3 +1,5 @@
+package Algorithm;
+
 import java.util.Scanner;
 
 // 대소문자 변경
