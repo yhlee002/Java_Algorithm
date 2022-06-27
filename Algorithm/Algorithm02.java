@@ -3,19 +3,22 @@ package Algorithm;
 import java.util.Scanner;
 
 // 대소문자 변경
+// 2022.06.27 Character.isLowerCase(), isUpperCase() 사용하는 방식으로 수정
 public class Algorithm02 {
-    public static void main(String[] args) {
-        // A : 65, a : 97
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-
-        char[] chars = str.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            if ((byte) chars[i] >= 97) chars[i] -= 32;
-            else chars[i] += 32;
+    private String solution(String str) {
+        String result = "";
+        for (char c : str.toCharArray()) {
+            if (Character.isLowerCase(c)) result += Character.toUpperCase(c);
+            else result += Character.toLowerCase(c);
         }
+        return result;
+    }
+    public static void main(String[] args) {
+        Algorithm02 al = new Algorithm02();
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine(); // 띄어쓰기를 허용하지 않을 때는 next()로도 충분함
 
-        System.out.println(new String(chars));
+        String answer = al.solution(str);
+        System.out.println(answer);
     }
 }
