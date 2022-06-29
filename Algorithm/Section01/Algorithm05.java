@@ -1,7 +1,5 @@
-package Algorithm;
+package Algorithm.Section01;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 // 영어 알파벳과 특수문자로 구성된 문자열이 주어지면 영어 알파벳만 뒤집고,

@@ -1,29 +1,29 @@
-package Algorithm;
+package Algorithm.Section01;
 
 import java.util.Scanner;
 
-public class Algorithm07 {
+public class Algorithm08 {
     private String solution(String str) {
+        str = str.replaceAll("[^/a-zA-Z/g]", "");
+
         int mid = str.length() / 2;
         String strA = "";
         String strB = "";
-
-        if(str.length() % 2 == 0) {
-            strA = str.substring(0, mid).toLowerCase();
+        if (str.length() % 2 == 0) {
+            strA = str.substring(0, mid);
         } else {
-            strA = str.substring(0, mid + 1).toLowerCase();
+            strA = str.substring(0, mid + 1);
         }
 
-        strB = "";
-        for (int i = str.length() - 1; i >= mid;  i--) {
+        for (int i = str.length() - 1; i >= mid; i--) {
             strB += str.charAt(i);
         }
 
-        if (strA.equals(strB.toLowerCase())) return "YES";
+        if (strA.toLowerCase().equals(strB.toLowerCase())) return "YES";
         else return "NO";
     }
     public static void main(String[] args) {
-        Algorithm07 al = new Algorithm07();
+        Algorithm08 al = new Algorithm08();
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
 
