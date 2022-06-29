@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// #을 1로, *을 0으로
+// 암호 해독(#을 1로, *을 0으로 변환하여 얻는 이진수를 다시 문자로 변환)
 public class Algorithm12 {
     private String solution(String str) {
         String answer = "";
