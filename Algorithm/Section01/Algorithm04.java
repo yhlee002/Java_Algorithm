@@ -10,19 +10,23 @@ public class Algorithm04 {
         List<String> answer = new ArrayList<>();
 
         for (String str : list) {
-            /*
-            char[] chars = str.toCharArray();
-            int j = 0;
-            String reverseChars = "";
-            for (int i = chars.length - 1; i >= 0; i--) {
-                reverseChars += chars[i];
-            }
-
-            answer.add(reverseChars);
-             */
-
+            /* 1) StringBuilder 사용
             String reverseStr = new StringBuilder(str).reverse().toString();
             answer.add(reverseStr);
+            */
+
+            // 2) 앞뒤를 전환(단어 양 끝단에서부터 순서대로 문자를 교환)
+            char[] chars = str.toCharArray();
+            int lt = 0, rt = str.length() - 1; // left, right
+
+            while (lt <= rt) {
+                char temp = chars[lt];
+                chars[lt] = chars[rt];
+                chars[rt] = temp;
+                lt++;
+                rt--;
+            }
+            answer.add(String.valueOf(chars));
 
         }
         return answer;
