@@ -10,13 +10,20 @@ public class Algorithm04 {
         List<String> answer = new ArrayList<>();
 
         for (String str : list) {
+            /*
             char[] chars = str.toCharArray();
             int j = 0;
             String reverseChars = "";
             for (int i = chars.length - 1; i >= 0; i--) {
                 reverseChars += chars[i];
             }
+
             answer.add(reverseChars);
+             */
+
+            String reverseStr = new StringBuilder(str).reverse().toString();
+            answer.add(reverseStr);
+
         }
         return answer;
     }
