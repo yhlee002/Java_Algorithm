@@ -6,7 +6,8 @@ import java.util.Scanner;
 // 특수문자는 자기 자리에 그대로 있는 문자열을 만들어 출력
 public class Algorithm05 {
     private String solution(String str) {
-        String answer = "";
+        String answer;
+        /*
         String str2 = str.replaceAll("[^/A-Za-z/g]", "");
         int j = str2.length() - 1;
         for (int i = 0; i < str.length(); i++) {
@@ -18,6 +19,22 @@ public class Algorithm05 {
                 answer += str.substring(i, i + 1);
             }
         }
+         */
+
+        char[] chars = str.toCharArray();
+        int lt = 0, rt = chars.length - 1;
+        while(lt <= rt) { // lt와 rt 모두 문자일 때만 두 인덱스가 같이 변경(아닐 경우 아닌 값의 인덱스만 변경)
+            if (!Character.isAlphabetic(chars[lt])) lt++;
+            else if (!Character.isAlphabetic(chars[rt])) rt--;
+            else {
+                char tmp = chars[lt];
+                chars[lt] = chars[rt];
+                chars[rt] = tmp;
+                lt++;
+                rt--;
+            }
+        }
+        answer = String.valueOf(chars);
 
         return answer;
     }
