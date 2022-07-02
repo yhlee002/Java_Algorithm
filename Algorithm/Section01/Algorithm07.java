@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Algorithm07 {
     private String solution(String str) {
-        String answer = "YES";
         /*
         int mid = str.length() / 2;
         String strA = "";
@@ -36,13 +35,19 @@ public class Algorithm07 {
         return "YES";
         */
 
+        /*
         str = str.toUpperCase();
         int len = str.length();
         for (int i = 0; i < len/2; i++) {
             int idx = len - 1 - i;
             if (str.charAt(i) != str.charAt(idx)) return "NO";
         }
-        return answer;
+        return "YES";
+         */
+
+        String tmp = new StringBuilder(str).reverse().toString();
+        if (str.equalsIgnoreCase(tmp)) return "YES";
+        return "YES";
     }
     public static void main(String[] args) {
         Algorithm07 al = new Algorithm07();
