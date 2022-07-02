@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Algorithm07 {
     private String solution(String str) {
+        String answer = "YES";
+        /*
         int mid = str.length() / 2;
         String strA = "";
         String strB = "";
@@ -21,6 +23,26 @@ public class Algorithm07 {
 
         if (strA.equals(strB.toLowerCase())) return "YES";
         else return "NO";
+         */
+
+        /* 양 끝단의 인덱스를 이용해 비교
+        char[] chars = str.toUpperCase().toCharArray();
+        int lt = 0, rt = chars.length - 1;
+        while (lt <= rt) {
+            if (chars[lt] != chars[rt]) return "NO";
+            lt++;
+            rt--;
+        }
+        return "YES";
+        */
+
+        str = str.toUpperCase();
+        int len = str.length();
+        for (int i = 0; i < len/2; i++) {
+            int idx = len - 1 - i;
+            if (str.charAt(i) != str.charAt(idx)) return "NO";
+        }
+        return answer;
     }
     public static void main(String[] args) {
         Algorithm07 al = new Algorithm07();
