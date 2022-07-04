@@ -11,33 +11,25 @@ public class Algorithm09 {
     private int solution (int num, int[][] grid) {
         int answer = 0;
 
-        // 행의 합 중 가장 큰 값 도출
+        int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0;
         for (int i = 0; i < num; i++) {
-            int sum = 0;
             for (int j = 0; j < num; j++) {
-                sum += grid[i][j];
+                sum1 += grid[i][j];
+                sum2 += grid[j][i]; // i, j를 서로 바꾸면 열의 합을 구할 수 있음
             }
-            if (sum > answer) answer = sum;
+            answer = Math.max(answer, sum1);
+            answer = Math.max(answer, sum2);
+            sum1 = sum2 = 0;
         }
 
-        // 열의 합 중 가장 큰 값 도출
+
         for (int i = 0; i < num; i++) {
-            int sum = 0;
-            for (int j = 0; j < num; j++) {
-                sum += grid[j][i];
-            }
-            if (sum > answer) answer = sum;
+            sum3 += grid[i][i];
+            sum4 += grid[i][num - i - 1];
         }
 
-        // 대각선의 합 중 가장 큰 값 도출
-        int diagonal = 0;
-        for (int i = 0; i < num; i++) diagonal += grid[i][i];
-        if (diagonal > answer) answer = diagonal;
-
-        // 역대각선의 합 중 가장 큰 값 도출
-        int revDiagonal = 0;
-        for (int i = num - 1; i >= 0; i--) revDiagonal += grid[i][i];
-        if (revDiagonal > answer) answer = revDiagonal;
+        answer = Math.max(answer, sum3);
+        answer = Math.max(answer, sum4);
 
         return answer;
     }
