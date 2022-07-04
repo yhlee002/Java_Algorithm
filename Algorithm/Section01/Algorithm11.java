@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Algorithm11 {
     private String solution(String str) {
         String answer = "";
-
+        /*
         Character preChar = null;
         int cnt = 1;
         for (char c : str.toCharArray()) {
@@ -28,6 +28,18 @@ public class Algorithm11 {
         }
 
         if (cnt != 1) answer += cnt;
+         */
+
+        str += " "; // 마지막 인덱스를 위한 공백 추가
+        int cnt = 1;
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) cnt++;
+            else {
+                answer += str.charAt(i);
+                if (cnt > 1) answer += String.valueOf(cnt);
+                cnt = 1;
+            }
+        }
         return answer;
     }
 
