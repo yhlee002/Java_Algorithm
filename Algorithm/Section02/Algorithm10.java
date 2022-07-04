@@ -11,19 +11,29 @@ import java.util.Scanner;
 public class Algorithm10 {
     private int solution(int n, int[][] grid) {
         int answer = 0;
-//        boolean[][] checked = new boolean[n][n];
+        /*
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
-//                if (checked[i][j]) {
-//
-//                }
                 if (grid[i][j] > grid[i][j - 1] && grid[i][j] > grid[i][j + 1]) {
                     if (grid[i][j] > grid[i - 1][j] && grid[i][j] > grid[i + 1][j]) {
                         answer++;
-
-//                        checked[i][j] = checked[i][j - 1] = checked[i][j + 1] = checked[i - 1][j] = checked[i + 1][j] = true;
                     }
                 }
+            }
+        }
+         */
+        int[] ny = {0, 1, 0, -1};
+        int[] nx = {-1, 0, 1, 0};
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                boolean flag = true;
+                for (int k = 0; k < 4; k++) {
+                    if (grid[i][j] <= grid[i + ny[k]][j + nx[k]]) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) answer++;
             }
         }
 
