@@ -11,25 +11,16 @@ public class Algorithm02 {
     private List<Integer> solution(int[] a, int[] b) {
         List<Integer> answer = new ArrayList<>();
 
-        boolean[] result = new boolean[1000000001];
-        for (int i = 0; i < a.length; i++) {
-            if (result[a[i]]) continue;
-
-            for (int j = 0; j < b.length; j++) {
-                if (a[i] == b[j]) {
-                    result[a[i]] = true;
-                    answer.add(a[i]);
-                    break;
-                }
+        int idx1 = 0, idx2 = 0;
+        while (idx1 < a.length && idx2 < b.length) {
+            if (a[idx1] < b[idx2]) idx1++;
+            else if (a[idx1] > b[idx2]) idx2++;
+            else {
+                answer.add(a[idx1]);
+                idx1++;
+                idx2++;
             }
         }
-
-        Collections.sort(answer, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 > o2 ? 1 : o1 < o2 ? -1 : 0;
-            }
-        });
 
         return answer;
     }
@@ -49,6 +40,9 @@ public class Algorithm02 {
         for (int i = 0; i < m; i++) {
             b[i] = sc.nextInt();
         }
+
+        Arrays.sort(a);
+        Arrays.sort(b);
 
         List<Integer> result = al.solution(a, b);
         for (int i : result) System.out.print(i + " ");

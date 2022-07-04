@@ -20,7 +20,7 @@ public class Algorithm11 {
             int[] checked = new int[n];
             for (int j = 0; j < 5; j++) {
                 for (int l = 0; l < n; l++) {
-                    if (l != i && grid[i][j] == grid[l][j]) {
+                    if (l != i && grid[i][j] == grid[l][j]) { // l != i 조건이 없어도 무관
                         if (checked[l] == 0) {
                             sum++;
                             checked[l] = 1;
