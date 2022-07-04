@@ -9,18 +9,31 @@ import java.util.*;
     세 번째 줄에 두 번째 배열의 크기 M 입력
     네 번째 줄에 M개의 배열 원소가 오름차순으로 입력
     cf. 각 리스트의 원소는 int형 변수의 크기를 넘지 않음
+    
+    22.07.05 배열의 two point(index)를 이용한 방식으로 수정
+    cf. 기존 방식 : List의 addAll() 메서드를 통해 새로운 리스트에 a, b 두 리스트의 원소를 모두 합친 후 오름차순으로 정렬
  */
 public class Algorithm01 {
-    private List<Integer> solution(List<Integer> list1, List<Integer> list2) {
+    private List<Integer> solution(int[] a, int[] b) {
         List<Integer> answer = new ArrayList<>();
-        answer.addAll(list1);
-        answer.addAll(list2);
-        Collections.sort(answer, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 > o2 ? 1 : o1 < o2 ? -1 : 0;
+        int idx1 = 0, idx2 = 0;
+        while(idx1 < a.length && idx2 < b.length) {
+            if (a[idx1] < b[idx2]) {
+                answer.add(a[idx1]);
+                idx1++;
+
             }
-        });
+            else if (a[idx1] > b[idx2]) {
+                answer.add(b[idx2]);
+                idx2++;
+            }
+            else {
+                answer.add(a[idx1]);
+                answer.add(b[idx1]);
+                idx1++;
+                idx2++;
+            }
+        }
 
         return answer;
     }
@@ -30,18 +43,26 @@ public class Algorithm01 {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
+/*
         List<Integer> list1 = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             list1.add(sc.nextInt());
         }
-
+*/
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+/*
         int m = sc.nextInt();
         List<Integer> list2 = new ArrayList<>();
         for (int i = 0; i < m; i++) {
             list2.add(sc.nextInt());
         }
+*/
+        int[] b = new int[m];
+        for (int i = 0; i < m; i++) b[i] = sc.nextInt();
 
-        List<Integer> result = al.solution(list1, list2);
+//        List<Integer> result = al.solution(list1, list2);
+        List<Integer> result = al.solution(a, b);
         for (int i = 0; i < n + m; i++) System.out.printf("%d ", result.get(i));
     }
 }
