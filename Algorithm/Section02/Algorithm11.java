@@ -50,7 +50,6 @@ public class Algorithm11 {
             for (int j = 0; j < 5; j++) {
                 grid[i][j] = sc.nextInt();
             }
-//            sc.nextLine();
         }
         System.out.println(al.solution(num, grid));
     }
