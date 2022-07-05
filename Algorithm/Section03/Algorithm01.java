@@ -43,25 +43,13 @@ public class Algorithm01 {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-/*
-        List<Integer> list1 = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            list1.add(sc.nextInt());
-        }
-*/
         int[] a = new int[n];
         for (int i = 0; i < n; i++) a[i] = sc.nextInt();
-/*
+
         int m = sc.nextInt();
-        List<Integer> list2 = new ArrayList<>();
-        for (int i = 0; i < m; i++) {
-            list2.add(sc.nextInt());
-        }
-*/
         int[] b = new int[m];
         for (int i = 0; i < m; i++) b[i] = sc.nextInt();
 
-//        List<Integer> result = al.solution(list1, list2);
         List<Integer> result = al.solution(a, b);
         for (int i = 0; i < n + m; i++) System.out.printf("%d ", result.get(i));
     }
