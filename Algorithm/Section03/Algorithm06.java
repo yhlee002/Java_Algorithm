@@ -14,15 +14,12 @@ public class Algorithm06 {
     private int solution(int n, int k, int[] arr) {
         int answer = 0, lt = 0, chg = 0;
         for (int rt = 0; rt < n; rt++) {
-            if (arr[rt] == 0) {
-                chg++;
-                while (chg > k) {
-                    if (arr[lt++] == 0) chg--;
-                }
+            if (arr[rt] == 0) chg++;
+            while (chg > k) {
+                if (arr[lt++] == 0) chg--;
             }
 
-            int len = rt - lt + 1;
-            if (answer < len) answer = len;
+            answer = Math.max(answer, rt - lt + 1);
         }
 
         return answer;
