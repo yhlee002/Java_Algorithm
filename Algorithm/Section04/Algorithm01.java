@@ -3,7 +3,7 @@ package Algorithm.Section04;
 import java.util.*;
 
 /*
-    학급 회장 선출
+    학급 회장 선출(해시)
     첫 줄에 학생 수 N 입력
     다음 줄에 학생들이 투표한 학생(후보 : A, B, C, D, E)을 순서대로 입력
     선출될 학급 회장 출력
