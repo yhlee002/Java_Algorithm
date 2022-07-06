@@ -12,15 +12,17 @@ public class Algorithm03 {
     private List<Integer> solution(int n, int k, int[] arr) {
         List<Integer> answer = new ArrayList<>();
 
-        Map<Integer, Integer> map = null;
-        for (int i = 0; i <= n - k; i++) {
-            int cnt = 0;
-            map = new HashMap<>();
-            for (int j = i; j < i + k; j++) {
-                map.put(arr[j], map.getOrDefault(arr[j], 0) + 1);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < k; i++) map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        answer.add(map.size());
+
+        for (int i = k; i < n; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+            if (map.containsKey(arr[i - k])) {
+                if (map.get(arr[i - k]) > 1) map.put(arr[i - k], map.get(arr[i - k]) - 1);
+                else map.remove(arr[i - k]);
             }
-            for (Integer m : map.keySet()) cnt++;
-            answer.add(cnt);
+            answer.add(map.size());
         }
 
         return answer;
