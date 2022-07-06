@@ -12,37 +12,17 @@ import java.util.*;
  */
 public class Algorithm06 {
     private int solution(int n, int k, int[] arr) {
-        int answer = 0;
-
-        int lt = 0, cnt = 0, max = 0, chg = 0;
+        int answer = 0, lt = 0, chg = 0;
         for (int rt = 0; rt < n; rt++) {
-            if(arr[rt] == 1) {
-                cnt++;
-            } else {
+            if (arr[rt] == 0) {
                 chg++;
-                if (chg <= k) {
-                    cnt++;
-                } else {
-                    if (answer < cnt) {
-                        answer = cnt;
-                    }
-
-                    while(chg > k) {
-                        cnt--;
-                        lt++;
-                        if (arr[lt] == 0) {
-                            chg--;
-                            lt++;
-                        }
-                    }
-
-                    while(arr[lt] == 0) {
-                        chg--;
-                        cnt--;
-                        lt++;
-                    }
+                while (chg > k) {
+                    if (arr[lt++] == 0) chg--;
                 }
             }
+
+            int len = rt - lt + 1;
+            if (answer < len) answer = len;
         }
 
         return answer;
