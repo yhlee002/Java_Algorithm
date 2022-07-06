@@ -9,27 +9,23 @@ import java.util.*;
     선출될 학급 회장 출력
  */
 public class Algorithm01 {
-    private Character solution(int num, String str) {
-        Character answer = null;
+    private char solution(int num, String str) {
+        char answer = ' ';
 
-        Map<Character, Object> map = new HashMap<>();
-        for (int i = 0; i < str.length(); i++) {
-            if (map.get(str.charAt(i)) == null) map.put(str.charAt(i), 1);
-            else map.put(str.charAt(i), (Integer) map.get(str.charAt(i)) + 1);
-        }
+        Map<Character, Integer> map = new HashMap<>();
 
-        int max = 0;
-        Iterator keyIter = map.keySet().iterator();
-        while(keyIter.hasNext()) {
-            Character key = (Character) keyIter.next();
-            int cnt = (int) map.get(key);
+        for (char c : str.toCharArray()) map.put(c, map.getOrDefault(c, 0) + 1);
+
+        int max = Integer.MIN_VALUE;
+        for (char c : map.keySet()) {
+            int cnt = map.get(c);
             if (max < cnt) {
                 max = cnt;
-                answer = key;
+                answer = c;
             }
         }
 
-        return answer;
+            return answer;
     }
 
     public static void main(String[] args) {
