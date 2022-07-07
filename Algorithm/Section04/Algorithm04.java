@@ -10,34 +10,21 @@ import java.util.Scanner;
  */
 public class Algorithm04 {
     private int solution(String s, String t) {
-        int answer = 0, idx = 0, len = t.length();
+        int answer = 0, idx = 0, lt = 0, len = t.length();
 
         Map<Character, Integer> tMap = new HashMap<>();
         Map<Character, Integer> sTempMap = new HashMap<>();
 
         for (char c : t.toCharArray()) tMap.put(c, tMap.getOrDefault(c, 0) + 1);
-        for (int i = 0; i < t.length() - 1; i++)
+        for (int i = 0; i < len - 1; i++) // 길이보다 하나 작게
             sTempMap.put(s.charAt(idx), sTempMap.getOrDefault(s.charAt(idx++), 0) + 1);
 
-        for (int i = idx; i < s.length(); i++) {
-            sTempMap.put(s.charAt(i), sTempMap.getOrDefault(s.charAt(i), 0) + 1);
-
-            boolean flag = true;
-            if (tMap.size() == sTempMap.size()) {
-                for (char c : tMap.keySet()) {
-                    if (sTempMap.get(c) != tMap.get(c)) {
-                        flag = false;
-                        break;
-                    }
-                }
-
-                if (flag) {
-                    answer++;
-                }
-            }
-
-            sTempMap.put(s.charAt(i - len + 1), sTempMap.get(s.charAt(i - len + 1)) - 1);
-            if (sTempMap.get(s.charAt(i - len + 1)) == 0) sTempMap.remove(s.charAt(i - len + 1));
+        for (int rt = idx; rt < s.length(); rt++) {
+            sTempMap.put(s.charAt(rt), sTempMap.getOrDefault(s.charAt(rt), 0) + 1);
+            if (tMap.equals(sTempMap)) answer++;
+            sTempMap.put(s.charAt(lt), sTempMap.get(s.charAt(lt)) - 1);
+            if (sTempMap.get(s.charAt(lt)) == 0) sTempMap.remove(s.charAt(lt));
+            lt++;
         }
         return answer;
     }
