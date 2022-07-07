@@ -13,16 +13,16 @@ public class Algorithm03 {
         List<Integer> answer = new ArrayList<>();
 
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < k; i++) map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
-        answer.add(map.size());
+        for (int i = 0; i < k - 1; i++) map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
 
-        for (int i = k; i < n; i++) {
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
-            if (map.containsKey(arr[i - k])) {
-                if (map.get(arr[i - k]) > 1) map.put(arr[i - k], map.get(arr[i - k]) - 1);
-                else map.remove(arr[i - k]);
-            }
+        int lt = 0;
+        for (int rt = k - 1; rt < n; rt++) {
+            map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
             answer.add(map.size());
+
+            map.put(arr[lt], map.get(arr[lt]) - 1);
+            if (map.get(arr[lt]) == 0) map.remove(arr[lt]);
+            lt++;
         }
 
         return answer;
@@ -36,6 +36,6 @@ public class Algorithm03 {
         int k = sc.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        for (Integer m : al.solution(n, k, arr)) System.out.printf("%d ", m);
+        for (Integer m : al.solution(n, k, arr)) System.out.print(m + " ");
     }
 }
