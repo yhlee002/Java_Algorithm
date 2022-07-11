@@ -1,6 +1,7 @@
 package Algorithm.Section05;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
     레이저는 여는 괄호와 닫는 괄호의 인접한 쌍 ‘( ) ’ 으로 표현. 또한, 모든 ‘( ) ’는 반드시 레이저를 표현
@@ -9,23 +10,19 @@ import java.util.Scanner;
  */
 public class Algorithm05 {
     private int solution(String str) {
-        int answer = 0, idx = 0;
-        char[] stack = new char[str.length()]; // 절반으로 해도 될 듯
-        stack[idx++] = '(';
-        for (int i = 1; i < str.length(); i++) {
+        int answer = 0;
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
 
-            if (c == '(') stack[idx++] = c;
-            else {
-                if (c == str.charAt(i - 1)) { // stack[idx - 1]과 비교하면 항상 다를 수 밖에 없음(')'는 스택에 들어가지 않기 때문)
-                    stack[--idx] = ' ';
+            if (c == ')') {
+                stack.pop();
+                if (c == str.charAt(i- 1)) {
                     answer++;
                 } else {
-                    stack[--idx] = ' ';
-                    answer += idx; // add size
+                    answer += stack.size();
                 }
-            }
-
+            } else stack.push(c);
         }
 
         return answer;

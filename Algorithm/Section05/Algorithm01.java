@@ -1,6 +1,7 @@
 package Algorithm.Section05;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
     올바른 괄호
@@ -11,17 +12,17 @@ public class Algorithm01 {
     private String solution(String str) {
         // '('가 나오면 cnt++, ')'가 나오면 cnt--가 되어야 함
         // 주의할 점은, 최종 결과만 0이 되면 되는 것이 아니라 값은 0이하로 내려가면 안됨
-        int cnt = 0;
-        for (char c : str.toCharArray()) {
-            if (c == '(') cnt++;
-            else cnt--;
+        Stack<Character> stack = new Stack<>();
 
-            if (cnt < 0) {
-                return "NO";
+        for (char c : str.toCharArray()) {
+            if (c == '(') stack.push(c);
+            else {
+                if (stack.isEmpty()) return "NO";
+                else stack.pop();
             }
         }
 
-        if (cnt == 0) return "YES";
+        if (stack.isEmpty()) return "YES";
         return "NO";
     }
 

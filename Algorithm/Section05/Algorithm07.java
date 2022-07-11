@@ -1,5 +1,7 @@
 package Algorithm.Section05;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 /*
@@ -12,19 +14,16 @@ import java.util.Scanner;
  */
 public class Algorithm07 {
     private String solution(String mandatories, String subjects) {
-        char[] manQueue = mandatories.toCharArray();
-        char[] subQueue = subjects.toCharArray();
+        Queue<Character> queue = new LinkedList<>();
 
-        int manFront = 0;
-        int subFront = 0;
-        while (subFront < subjects.length() && manFront < mandatories.length()) {
-            if (subQueue[subFront] == manQueue[manFront]) {
-                manFront++;
+        for (char c : mandatories.toCharArray()) queue.offer(c);
+        for (char x : subjects.toCharArray()) {
+            if (queue.contains(x)) {
+                if (x != queue.poll()) return "NO";
             }
-            subFront++;
         }
 
-        if (manFront == manQueue.length) return "YES"; // manQueue가 다 비워졌는지(size == 0) 확인
+        if (queue.isEmpty()) return "YES"; // queue가 다 비워졌는지 확인
         else return "NO";
     }
 

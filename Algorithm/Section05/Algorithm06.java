@@ -1,9 +1,6 @@
 package Algorithm.Section05;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /*
     공주 구하기
@@ -18,21 +15,16 @@ import java.util.Scanner;
 public class Algorithm06 {
     private int solution(int n, int k) {
         int answer = Integer.MIN_VALUE;
-        List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < n; i++) list.add(i + 1);
-
-        // 1차 작성 : 링 버퍼를 사용한 큐를 통해 작성
-        int idx = 0, listIdx = 0;
-        int[] queue = new int[k];
-        while (list.size() > 1) {
-            if (listIdx >= list.size()) listIdx = 0;
-            int num = list.get(listIdx++);
-
-            if (idx >= k) idx = 0; // k와 같아지면 0으로 변경
-            queue[idx++] = num;
-            if (idx == k) list.remove(--listIdx);
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < n; i++) queue.offer(i + 1);
+        int cnt = 0;
+        while (queue.size() > 1) {
+            int no = queue.poll();
+            if (++cnt != k) queue.offer(no);
+            else cnt = 0;
         }
-        answer = list.get(0);
+
+        answer = queue.peek();
 
         return answer;
     }

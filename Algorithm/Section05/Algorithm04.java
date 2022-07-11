@@ -2,6 +2,7 @@ package Algorithm.Section05;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
     후위식 연산
@@ -10,33 +11,20 @@ import java.util.Scanner;
 public class Algorithm04 {
     private int solution(String str) {
         int answer = Integer.MIN_VALUE;
-        int idx = 0; // current stack pointer
-        int[] stack = new int[100]; // stack maximum length is smaller than 100
+        Stack<Integer> stack = new Stack<>();
         for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                stack[idx++] = Integer.parseInt(String.valueOf(c)); // push
-            } else { // operator
-                int rt = stack[--idx];
-                stack[idx] = 0;
-                int lt = stack[--idx];
-                stack[idx] = 0;
-                switch (c) {
-                    case '+':
-                        stack[idx++] = lt + rt;
-                        break;
-                    case '-':
-                        stack[idx++] = lt - rt;
-                        break;
-                    case '*':
-                        stack[idx++] = lt * rt;
-                        break;
-                    case '/':
-                        stack[idx++] = lt / rt;
-                        break;
-                }
+            if (Character.isDigit(c)) stack.push(Integer.parseInt(String.valueOf(c)));
+            else { // operator
+                int rt = stack.pop();
+                int lt = stack.pop();
+
+                if (c == '+') stack.push(lt + rt);
+                else if (c == '-') stack.push(lt - rt);
+                else if (c == '*') stack.push(lt * rt);
+                else if (c == '/') stack.push(lt / rt);
             }
         }
-        answer = stack[idx - 1]; // pop
+        answer = stack.pop();
 
         return answer;
     }

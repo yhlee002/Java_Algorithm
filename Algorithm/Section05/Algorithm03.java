@@ -3,6 +3,7 @@ package Algorithm.Section05;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 
 /*
     인형 뽑기
@@ -17,22 +18,19 @@ import java.util.Scanner;
 public class Algorithm03 {
     private int solution(int n, int[][] board, int k, int[] moves) {
         int answer = 0;
-        List<Integer> stack = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
         for (int i  = 0; i < k; i++) {
             int num = moves[i];
-            // Map으로 각 열에 대한 가장 위에 있는 요소의 위치(행)을 가지면 어떨까
             int idx = 0;
             while(idx < n - 1 && board[idx][num - 1] <= 0) idx++;
             if (idx < n) {
                 int pickNum = board[idx][num - 1];
                 board[idx][num - 1] = 0; // 제거된 인형 자리에 0 입력
-                stack.add(pickNum);
-                int lastItemIdx = stack.size() - 1; // 꺼낸 목록에 넣기
-                if (stack.size() > 1 && stack.get(lastItemIdx) == stack.get(lastItemIdx - 1)) {
-                    stack.remove(lastItemIdx);
-                    stack.remove(lastItemIdx - 1);
+
+                if (!stack.isEmpty() && stack.peek() == pickNum) {
+                    stack.pop();
                     answer += 2;
-                }
+                } else stack.push(pickNum);
             }
         }
 
