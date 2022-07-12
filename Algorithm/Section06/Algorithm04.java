@@ -12,26 +12,22 @@ import java.util.Scanner;
 public class Algorithm04 {
     private int[] solution(int s, int n, int[] list) {
         int[] answer = new int[s];
-//        Deque<Integer> deque = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             int task = list[i];
 
-            boolean flag = true;
-            int sameIdx = 0;
+            int sameIdx = -1;
             for (int j = 0; j < answer.length; j++) {
                 if (task == answer[j]) {
-                    flag = false;
                     sameIdx = j;
                     break;
                 }
             }
 
-            if (flag) {
-                // 가장 오래된 데이터 제거(poll) 후 한 인덱스씩 미루기
+            if (sameIdx == -1) { // cache miss
                 for (int j = answer.length - 1; j >= 1; j--) {
                     answer[j] = answer[j - 1];
                 }
-            } else {
+            } else { // cache hit
                 for (int j = sameIdx; j >= 1; j--) {
                     answer[j] = answer[j - 1];
                 }

@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class Algorithm03 {
     private int[] solution(int n, int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-            int tmp = arr[i];
-            int j = i - 1;
-            while (j >= 0 && tmp < arr[j]) arr[j + 1] = arr[j--];
+            int tmp = arr[i], j;
+            for (j = i - 1; j >= 0; j--) {
+                if (tmp < arr[j]) arr[j + 1] = arr[j];
+                else break;
+            }
             arr[j + 1] = tmp;
         }
 
