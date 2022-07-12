@@ -1,5 +1,8 @@
 package Algorithm.Section06;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -15,16 +18,12 @@ import java.util.Scanner;
     다음 줄에 제일 앞에부터 일렬로 서있는 학생들의 키(120<=H<=180, 자연수) 입력
 */
 public class Algorithm06 {
-    private int[] solution(int n, int[] arr) {
-        int[] answer = new int[2];
-        for (int i = 1; i < n; i++) {
-            int tmp = arr[i];
-            int j = i - 1;
-            if (arr[j] > tmp) {
-                while (arr[j] > tmp) arr[j + 1] = arr[j--];
-                answer[0] = j + 2; // 인덱스 : j + 1
-                answer[1] = i + 1; // 인덱스 : i
-            }
+    private List<Integer> solution(int n, int[] arr) {
+        List<Integer> answer = new ArrayList<>();
+        int[] tmp = arr.clone();
+        Arrays.sort(tmp);
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != tmp[i]) answer.add(i + 1);
         }
 
         return answer;
