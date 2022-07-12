@@ -10,7 +10,7 @@ public class Algorithm01 {
     private int[] solution(int n, int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             int minIdx = i;
-            for (int j = i; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[minIdx] > arr[j]) minIdx = j;
             }
 

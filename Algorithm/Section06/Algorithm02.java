@@ -8,10 +8,9 @@ import java.util.Scanner;
 public class Algorithm02 {
     private int[] solution(int n, int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - 1; j++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) { // 버블 정렬은 n번의 회차를 실행할 때마다 맨 뒤에서 n개 인덱스의 값 정렬
                 if (arr[j] > arr[j + 1]) change(arr, j, j + 1);
             }
-
         }
 
         return arr;
