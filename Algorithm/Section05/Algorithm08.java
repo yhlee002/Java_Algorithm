@@ -36,7 +36,7 @@ public class Algorithm08 {
     }
 
     private int solution(int n, int m, int[] arr) {
-        int answer = m, cnt = 0;
+        int answer = 0, cnt = 1;
         Queue<Person> queue = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             Person p = new Person();
@@ -47,16 +47,21 @@ public class Algorithm08 {
 
         while (!queue.isEmpty()) {
             Person p = queue.poll();
+            boolean flag = true;
             for (Person person : queue) {
                 if (p.priority < person.priority) {
-                    queue.offer(p); // 순회 중에 조작 시 ConcurrentModificationException 발생
-                    if (p.no == m) cnt++;
+                    flag = false;
+                    queue.offer(p);
                     break;
                 }
             }
+            if (flag) {
+                if (p.no == m) break;
+                else cnt++;
+            }
         }
 
-        answer += cnt;
+        answer = cnt;
 
         return answer;
     }
