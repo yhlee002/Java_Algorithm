@@ -1,7 +1,6 @@
 package Algorithm.Section06;
 
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /*
     좌표 정렬
@@ -12,32 +11,35 @@ import java.util.Scanner;
     다음 줄부터 N개의 좌표가 x, y 순으로 입력(x, y값은 양수)
     N개의 좌표를 정렬하여 출력
  */
-public class Algorithm07 {
-    private int[][] solution(int n, int[][] arr) {
-        for (int i = 0; i < n; i++) {
-            int[] tmp = arr[i];
 
-            int j = i - 1;
-            while (j >= 0 && (arr[j][0] > tmp[0] || (arr[j][0] == tmp[0] && arr[j][1] > tmp[1]))) arr[j + 1] = arr[j--];
-            arr[j + 1] = tmp;
-        }
-        return arr;
+class Point implements Comparable<Point> {
+    public int x, y;
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
+    @Override
+    public int compareTo(Point p) {
+        if (this.x == p.x) return this.y - p.y;
+        return this.x - p.x; // this.x < p.x 일 때, 오름차순으로 정렬하고 싶다면 음수가 나오게 되어야 함
+    }
+}
 
+public class Algorithm07 {
     public static void main(String[] args) {
-        Algorithm07 al = new Algorithm07();
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
-        int[][] arr = new int[n][2];
+        List<Point> list = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < 2; j++) {
-                arr[i][j] = sc.nextInt();
-            }
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            list.add(new Point(x, y));
         }
 
-        for(int[] x : al.solution(n, arr)) {
-            System.out.println(x[0] + " " + x[1]);
+        Collections.sort(list);
+        for(Point p : list) {
+            System.out.println(p.x + " " + p.y);
         }
     }
 }
