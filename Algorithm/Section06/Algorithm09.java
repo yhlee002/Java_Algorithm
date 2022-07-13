@@ -1,5 +1,7 @@
 package Algorithm.Section06;
 
+import java.util.Scanner;
+
 /*
     뮤직비디오(결정알고리즘)
     지니레코드에서는 불세출의 가수 조영필의 라이브 동영상을 DVD로 만들어 판매하려 한다.
@@ -18,4 +20,20 @@ package Algorithm.Section06;
     첫 번째 줄부터 DVD의 최소 용량 크기를 출력
  */
 public class Algorithm09 {
+    private int solution(int n, int m, int[] list) {
+       int answer = 0;
+
+       return answer;
+    }
+
+    public static void main(String[] args) {
+        Algorithm09 al = new Algorithm09();
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt(); // 곡 수
+        int m = sc.nextInt(); // 사용할 DVD 수
+        int[] list = new int[n]; // 라이브에서 부른 N개의 곡의 길이
+
+        System.out.println(al.solution(n, m, list));
+    }
 }
