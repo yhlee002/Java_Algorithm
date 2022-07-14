@@ -1,5 +1,6 @@
 package Algorithm.Section06;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -21,39 +22,29 @@ import java.util.Scanner;
  */
 public class Algorithm09 {
     private int solution(int n, int m, int[] list) {
-        int answer = 0;
-        int sum = 0;
-        int[] list2 = list.clone();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - 1 - i; j++) {
-                if (list2[j] > list2[j + 1]) {
-                    int tmp = list2[j];
-                    list2[j] = list2[j + 1];
-                    list2[j + 1] = tmp;
-                }
-            }
-            sum += list[i];
-        }
-        sum += list[n - 1];
+        int answer = Integer.MAX_VALUE;
 
-        int lt = list2[n - 1]; // list에서 가장 큰 수의 값
-        int rt = sum; // list의 모든 요소의 값
+        int lt = Arrays.stream(list).max().getAsInt();
+        int rt = Arrays.stream(list).sum();
 
         while (lt <= rt) {
             int mid = (lt + rt) / 2;
-            int sum2 = 0, cnt = 1;
+            int sum = 0, cnt = 1;
+
             for (int i = 0; i < n; i++) {
-                if (sum2 + list[i] > mid) {
+                if (sum + list[i] > mid) {
                     cnt++;
-                    sum2 = list[i];
-                } else sum2 += list[i];
+                    sum = list[i];
+                } else sum += list[i];
             }
 
             if (cnt > m) lt = mid + 1;
-            else if (cnt < m) rt = mid - 1;
-            else return mid;
-        }
+            else {
+                rt = mid - 1;
+                if (answer > mid) answer = mid;
+            }
 
+        }
        return answer;
     }
 
