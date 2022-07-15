@@ -39,7 +39,7 @@ public class Algorithm09 {
             }
 
             if (cnt > m) lt = mid + 1;
-            else {
+            else { // m개보다 작아도 괜찮음에 유의.
                 rt = mid - 1;
                 if (answer > mid) answer = mid;
             }
