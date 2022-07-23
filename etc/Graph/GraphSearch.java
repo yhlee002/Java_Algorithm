@@ -1,4 +1,4 @@
-package etc;
+package etc.Graph;
 /*
     아래의 형태로 트리가 존재할 경우를 가정
       0
@@ -117,7 +117,7 @@ class Graph{
         }
     }
 }
-public class TreeSearch {
+public class GraphSearch {
     public static void main(String args[]){
         Graph graph = new Graph(9);
         graph.addEdge(0, 1);
