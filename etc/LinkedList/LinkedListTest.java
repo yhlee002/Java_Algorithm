@@ -2,9 +2,11 @@ package etc.LinkedList;
 
 class LinkedList {
     Node header;
+    // 데이터 저장 용도가 아닌 대표격으로만 사용
+
     static class Node {
         int data;
-        Node next;
+        Node next = null;
     }
 
     public LinkedList() {
@@ -14,26 +16,26 @@ class LinkedList {
     void append(int d) {
         Node end = new Node();
         end.data = d;
-        Node node = header;
-        while (node.next != null) node = node.next;
-        node.next = end;
+        Node n = header;
+        while (n.next != null) n = n.next;
+        n.next = end;
     }
 
     void delete(int d) {
-        Node node = header;
-        while (node.next != null) {
-            if (node.next.data == d) node.next = node.next.next;
-            else node = node.next;
+        Node n = header;
+        while (n.next != null) {
+            if (n.next.data == d) n.next = n.next.next;
+            else n = n.next;
         }
     }
 
     void retrieve() {
-        Node node = header;
-        while (node.next != null) {
-            System.out.print(node.data + " -> ");
-            node = node.next;
+        Node n = header.next;
+        while (n.next != null) {
+            System.out.print(n.data + " -> ");
+            n = n.next;
         } // 마지막 노드는 출력하지 않음
-        System.out.println(node.data);
+        System.out.println(n.data);
     }
 }
 
