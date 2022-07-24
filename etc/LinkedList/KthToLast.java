@@ -1,9 +1,6 @@
 package etc.LinkedList;
-/*
-* 뒤에서 K번째 노드 찾기
-*
-*/
 
+// 뒤에서 K번째 노드 찾기
 import etc.LinkedList.LinkedList.Node;
 
 class LinkedList3 extends LinkedList {
