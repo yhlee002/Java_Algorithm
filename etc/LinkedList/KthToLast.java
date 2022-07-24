@@ -26,6 +26,17 @@ class LinkedList3 extends LinkedList {
         if (count == idx) System.out.println("Last K(" + idx + ")th data is " + node.data);
         return count;
     }
+
+    void getKthNodeWithTwoPointers(Node first, int idx) {
+        Node p1 = first;
+        Node p2 = first;
+        for (int i = 0; i < idx; i++) p1 = p1.next;
+        while (p1 != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        System.out.println("Last K(" + idx + ")th data is " + p2.data);
+    }
 }
 public class KthToLast {
     public static void main(String[] args) {
@@ -41,5 +52,7 @@ public class KthToLast {
         System.out.println("Last K(" + k + ")th data is " + kth.data);
         // Recursive
         ll.getKthNodeRecursive(ll.header, k);
+        // Two Pointer
+        ll.getKthNodeWithTwoPointers(ll.header, k);
     }
 }
