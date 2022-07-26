@@ -7,10 +7,11 @@ public class Algorithm06 {
 
     static void dfs(int k) {
         if (k == n + 1) {
+            String str = "";
             for (int i = 1; i <= n; i++) {
-                if (result[i] == 1) System.out.print(i + " ");
+                if (result[i] == 1) str += i + " ";
             }
-            System.out.println();
+            if (str.length() > 0) System.out.println(str);
         } else {
             int L = 1;
             result[k] = L;
