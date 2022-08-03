@@ -25,7 +25,7 @@ public class Algorithm01 {
                 else sum2 += list[i];
             }
 
-            if (sum1 == sum2) {
+            if (sum1 == sum2) { // total - sum == sum 혹은 total = 2 * sum
                 answer = "YES";
                 return;
             }
