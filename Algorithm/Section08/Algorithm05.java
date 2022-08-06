@@ -54,6 +54,27 @@ public class Algorithm05 {
         return min;
     }
 
+    // level traversal
+    void BFS() {
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(0);
+
+        int L = 0;
+        while (!q.isEmpty()) {
+            if (L >= min) return;
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                int r = q.poll();
+                if (r > m) continue;
+                if (r == m) min = Math.min(L, min);
+                for (int j = 0; j < n; j++) {
+                    int x = r + list[j];
+                    q.offer(x);
+                }
+            }
+            L++;
+        }
+    }
 
     public static void main(String[] args) {
         Algorithm05 main = new Algorithm05();
@@ -62,13 +83,16 @@ public class Algorithm05 {
         list = new int[n];
         for (int i = n - 1; i >= 0; i--) list[i] = sc.nextInt();
         m = sc.nextInt();
-        min = m; // recursive에만 필요
+        min = m; // recursive, level traversal에서 사용
 
-        // recursive
+        // recursive(DFS)
         main.DFSR(0, 0);
         System.out.println(min);
-        // stack
+        // stack(DFS)
         System.out.println(main.DFS());
-
+        // level traversal(BFS)
+//        min = m;
+//        main.BFS();
+//        System.out.println(min);
     }
 }
