@@ -9,30 +9,66 @@ public class Algorithm05 {
     static int m;
     static int[] list;
 
-    void DFS(int L, int sum, int[] result) {
-        if (sum < m) {
+    // recursive
+    void DFSR(int L, int sum) {
+        if (sum > m) return;
+        if (L >= min) return;
+
+        if (sum == m)  min = Math.min(min, L);
+        else {
             for (int i = 0; i < n; i++) {
-                result[L] = list[i];
-                DFS(L + 1, sum + list[i], result);
+                DFSR(L + 1, sum + list[i]);
             }
-        } else {
-//            for (int i = 0; i < L; i++) System.out.print(result[i] + " ");
-//            System.out.println();
-            if (sum == m && min > L) min = L;
         }
     }
+
+
+    // stack에서 사용
+    static class Result {
+        int size; // 동전 개수
+        int sum; // 합친 금액
+
+        public Result(int size, int sum) {
+            this.size = size;
+            this.sum = sum;
+        }
+    }
+    // stack
+    int DFS() {
+        int min = m;
+        Stack<Result> stack = new Stack<>();
+        stack.push(new Result(0, 0));
+        while (!stack.isEmpty()) {
+            Result r = stack.pop();
+
+            if (r.size + 1 < min) {
+                for (int i = 0; i < n; i++) {
+                    int x = r.sum + list[i];
+                    if (x == m) min = Math.min(r.size + 1, min);
+                    else if (x < m) stack.push(new Result(r.size + 1, x));
+                    else continue;
+                }
+            }
+        }
+
+        return min;
+    }
+
 
     public static void main(String[] args) {
         Algorithm05 main = new Algorithm05();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         list = new int[n];
-        for (int i = 0; i < n; i++) list[i] = sc.nextInt();
+        for (int i = n - 1; i >= 0; i--) list[i] = sc.nextInt();
         m = sc.nextInt();
+        min = m; // recursive에만 필요
 
-        min = Integer.MAX_VALUE;
-        int[] result = new int[m]; // 동전 금액은 항상 자연수(1 이상)이므로
-        main.DFS(0, 0, result);
+        // recursive
+        main.DFSR(0, 0);
         System.out.println(min);
+        // stack
+        System.out.println(main.DFS());
+
     }
 }
