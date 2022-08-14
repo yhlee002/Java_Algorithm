@@ -2,7 +2,7 @@ package Algorithm.Section08;
 
 import java.util.Scanner;
 
-// 섬나라 아일랜드
+// 섬나라 아일랜드(DFS 방식 풀이)
 public class Algorithm13 {
     static int n;
     static int[][] matrix;
@@ -46,14 +46,13 @@ public class Algorithm13 {
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                main.DFS();
-            }
-        }
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n; j++) {
+//                main.DFS();
+//            }
+//        }
 
+        main.DFS();
         System.out.println(cnt);
-
-//    main.BFS();
     }
 }
