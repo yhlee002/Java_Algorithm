@@ -1,8 +1,6 @@
 package Algorithm.Section09;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 현수는 씨름 감독입니다. 현수는 씨름 선수를 선발공고를 냈고, N명의 지원자가 지원을 했습니다.
@@ -13,13 +11,18 @@ import java.util.Scanner;
 N명의 지원자가 주어지면 위의 선발원칙으로 최대 몇 명의 선수를 선발할 수 있는지 알아내는 프로그램을 작성하세요.
  */
 public class Algorithm01 {
-    static class Person {
+    static class Person implements Comparable<Person> {
         int height;
         int weight;
 
         public Person(int height, int weight) {
             this.height = height;
             this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(Person o) {
+            return o.height - this.height;
         }
     }
     public static void main(String[] args) {
@@ -32,7 +35,7 @@ public class Algorithm01 {
             int w = sc.nextInt();
             list.add(new Person(h, w));
         }
-
+/*  방법 1
         int answer = list.size();
         for (int i = 0; i < list.size(); i++) {
             Person p1 = list.get(i);
@@ -46,5 +49,18 @@ public class Algorithm01 {
         }
 
         System.out.println(answer);
+*/
+
+        // 방법 2
+        Collections.sort(list);
+        int cnt = 0;
+        int max = Integer.MIN_VALUE;
+        for (Person p : list) {
+            if (p.weight > max) {
+                max = Math.max(max, p.weight);
+                cnt++;
+            }
+        }
+        System.out.println(cnt);
     }
 }
