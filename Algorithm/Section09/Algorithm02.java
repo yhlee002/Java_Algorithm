@@ -1,16 +1,13 @@
 package Algorithm.Section09;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
-// 회의실 배정
 public class Algorithm02 {
+    static int cnt = 0;
     static int n;
     static Item[] list;
-    static int max;
 
-    static class Item {
+    static class Item implements Comparable<Item> {
         int start;
         int end;
 
@@ -18,30 +15,20 @@ public class Algorithm02 {
             this.start = start;
             this.end = end;
         }
+
+        @Override
+        public int compareTo(Item o) {
+            return o.end == this.end ? this.start - o.start : this.end - o.end;
+        }
     }
 
     void solution() {
-        max = 0;
-        for (int i = 0; i < list.length; i++) {
-            traversal(i, 1);
-        }
-
-        System.out.println(max);
-    }
-
-    void traversal(int idx, int cnt) {
-        boolean flag = true;
-        Item item = list[idx];
-        for (int i = idx + 1; i < n; i++) {
-            if (item.end <= list[i].start) {
-                flag = false;
-                traversal(i, cnt + 1);
-                break;
+        int last = 0;
+        for (int i = 0; i < n; i++) {
+            if (last <= list[i].start) {
+                last = list[i].end;
+                cnt++;
             }
-        }
-        if (flag) {
-            max = Math.max(max, cnt);
-            return;
         }
     }
 
@@ -51,17 +38,13 @@ public class Algorithm02 {
         n = sc.nextInt();
         list = new Item[n];
         for (int i = 0; i < n; i++) {
-            int s = sc.nextInt();
-            int e = sc.nextInt();
-            list[i] = new Item(s, e);
+            int start = sc.nextInt();
+            int end = sc.nextInt();
+            list[i] = new Item(start, end);
         }
-        Arrays.sort(list, new Comparator<Item>() {
-            @Override
-            public int compare(Item o1, Item o2) {
-                return o1.start > o2.start ? 1 : o1.start == o2.start ? 0 : -1;
-            }
-        });
+        Arrays.sort(list);
 
         main.solution();
+        System.out.println(cnt);
     }
 }
