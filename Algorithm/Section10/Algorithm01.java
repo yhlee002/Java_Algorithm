@@ -1,9 +1,9 @@
-package Algorithm;
+package Algorithm.Section10;
 
 import java.util.Scanner;
 
 // 계단 오르기
-public class Algorithm10 {
+public class Algorithm01 {
 
   public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
