@@ -9,17 +9,17 @@ public class Algorithm05 {
     Scanner sc = new Scanner(System.in);
     int n = sc.nextInt();
     Integer[] list = new Integer[n];
-    int[] cnt = new int[n];
     for (int i = 0; i < n; i++) list[i] = sc.nextInt();
-    int sum = sc.nextInt();
+    int total = sc.nextInt();
+    int[] result = new int[total + 1];
+    Arrays.fill(result, Integer.MAX_VALUE);
+    result[0] = 0;
 
-    Arrays.sort(list, Collections.reverseOrder());
-    int temp = sum;
     for (int i = 0; i < n; i++) {
-      cnt[i] = temp / list[i];
-      temp = temp % list[i];
-      if (temp == 0) break;
+      for (int j = list[i]; j <= total; j++) {
+        result[j] = Math.min(result[j], result[j - list[i]] + 1);
+      }
     }
-    System.out.println(Arrays.stream(cnt).sum());
+    System.out.println(result[total]);
   }
 }
