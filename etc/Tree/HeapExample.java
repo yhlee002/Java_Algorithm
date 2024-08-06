@@ -1,4 +1,4 @@
-package DataStructure;
+package etc.Tree;
 
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class HeapExample {
         Heap h = new Heap(10);
 
         for (int i = 0; i < 10; i++) {
-            int n = random.nextInt(19) + 1; // 1 ~ 20
+            int n = random.nextInt(49) + 1; // 1 ~ 20
             h.add(n);
         }
 
@@ -50,75 +50,73 @@ public class HeapExample {
         }
 
         public void resize(int capacity) {
-            if (this.size > capacity) {
+            if (size > capacity) {
                 throw new IllegalArgumentException("힙의 크기보다 작아질 수는 없습니다.");
             }
             int[] newHeap = new int[capacity];
-            for (int i = 1; i <= this.size; i++) {
-                newHeap[i] = this.heap[i];
+            for (int i = 1; i <= size; i++) {
+                newHeap[i] = heap[i];
             }
 
-            this.heap = newHeap;
+            heap = newHeap;
         }
 
         private void add(int node) {
-            if (this.size + 1 > this.capacity) {
-                resize(this.size * 2); // 용량 초과시 2배로 증가
+            if (size + 1 > capacity) {
+                resize(size * 2); // 용량 초과시 2배로 증가
             }
-            this.heap[this.size + 1] = node;
-            this.size++;
 
-            // 들어가야 하는 위치 찾기
-            // (this.size + 1) / 2 = 들어갈 부모의 인덱스
-            compare(this.size + 1);
+            heap[size + 1] = node;
+
+            // 들어갈 부모의 인덱스 = (size + 1) / 2
+            int idx = size + 1;
+
+            while (idx > 1) {
+                if (heap[idx / 2] < node) {
+                    break;
+                }
+
+                swap(idx / 2, idx);
+                idx = idx / 2;
+            }
+
+            size++;
         }
 
-        private void compare(int idx) {
-            int parentIdx = idx / 2;
+        private void heapify(int idx) {
+            int targetIdx = idx;
 
-            while (heap[parentIdx] > heap[idx] && idx > 1) {
-                swap(idx, parentIdx);
+            if (idx * 2 <= size && heap[idx * 2] < heap[idx]) {
+                targetIdx = idx * 2;
+            }
 
-                idx = parentIdx;
-                parentIdx = idx / 2;
+            if (idx * 2 + 1 <= size && heap[idx * 2 + 1] < heap[idx]) {
+                targetIdx = heap[idx * 2] <= heap[idx * 2 + 1] ? idx * 2 : idx * 2 + 1;
+            }
+
+            if (heap[targetIdx] < heap[idx]) {
+                swap(targetIdx, idx);
+                heapify(targetIdx);
             }
         }
 
-        private void delete() {
-            if (this.size == 0 || this.heap[1] == 0) {
+        private int delete() {
+            if (size == 0) {
                 throw new NoSuchElementException();
             }
 
             // root 제거 -> root 자리에 last node 옮김
-            this.heap[1] = this.heap[this.size];
-            this.size--;
+            int val = heap[1];
+            heap[1] = heap[size];
+            size--;
 
-            int nodeIdx = 1;
+            heapify(1);
 
-            int targetIdx;
-            while ((nodeIdx * 2 <= this.size && this.heap[nodeIdx * 2] < this.heap[nodeIdx])
-                    || (nodeIdx * 2 + 1) <= this.size && this.heap[nodeIdx * 2 + 1] < this.heap[nodeIdx]) {
-                int childIdx0 = nodeIdx * 2;
-                int childIdx1 = nodeIdx * 2 + 1;
-                // 비교값 유효성 검증
-                if (childIdx0 <= this.size && childIdx1 > this.size) {
-                    targetIdx = childIdx0;
-                } else if (childIdx1 <= this.size && childIdx0 > this.size) {
-                    targetIdx = childIdx1;
-                } else {
-                    targetIdx = this.heap[childIdx0] <= this.heap[childIdx1] ? childIdx0 : childIdx1;
-                }
-
-                if (this.heap[nodeIdx] > this.heap[targetIdx]) {
-                    swap(nodeIdx, targetIdx);
-
-                    nodeIdx = targetIdx;
-                }
-            }
+            return val;
         }
 
         private int peek() {
-            if (heap[1] == 0) {
+            if (size == 0) {
                 throw new NoSuchElementException();
             }
 
@@ -126,20 +124,16 @@ public class HeapExample {
         }
 
         private void swap(int idx0, int idx1) {
-            int val = this.heap[idx0];
-            this.heap[idx0] = this.heap[idx1];
-            this.heap[idx1] = val;
-        }
-
-        private int getSize() {
-            return this.size;
+            int val = heap[idx0];
+            heap[idx0] = heap[idx1];
+            heap[idx1] = val;
         }
 
         @Override
         public String toString() {
             StringBuilder builder = new StringBuilder();
-            for (int i = 1; i <= this.size; i++) {
-                int val = this.heap[i];
+            for (int i = 1; i <= size; i++) {
+                int val = heap[i];
                 builder.append(val + ", ");
             }
 
