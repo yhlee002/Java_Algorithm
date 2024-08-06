@@ -94,7 +94,7 @@ public class HeapExample {
                 targetIdx = heap[idx * 2] <= heap[idx * 2 + 1] ? idx * 2 : idx * 2 + 1;
             }
 
-            if (heap[targetIdx] < heap[idx]) {
+            if (targetIdx != idx) {
                 swap(targetIdx, idx);
                 heapify(targetIdx);
             }
