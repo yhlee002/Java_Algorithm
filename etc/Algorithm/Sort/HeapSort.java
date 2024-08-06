@@ -56,7 +56,6 @@ public class HeapSort {
         /**
          * 정렬되지 않은 배열(이진 트리)를 힙 속성을 만족하도록 재정렬(heap sort)
          * @param list 외부 배열
-         * @return result
          */
         public static void heapSort(int[] list) {
             if (list.length < 2) {
