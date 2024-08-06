@@ -70,11 +70,8 @@ public class HeapSort {
                 shiftDown(list, i, lastIdx);
             }
 
-            System.out.println("1차로 전체 heapify : " + Arrays.toString(list));
-
             for (int i = list.length - 1; i >= 0; i--) {
                 swap(list, 0, i); // 마지막 요소부터 하나씩 앞으로 당기며 root값 가짐
-                System.out.println(i + "번째 값: " + list[i] + ", 현재 list: " + Arrays.toString(list));
                 lastIdx--;
                 shiftDown(list, 0, lastIdx);
             }
