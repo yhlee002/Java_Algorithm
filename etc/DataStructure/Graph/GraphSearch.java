@@ -1,4 +1,4 @@
-package etc.Graph;
+package etc.DataStructure.Graph;
 /*
     아래의 형태로 트리가 존재할 경우를 가정
       0

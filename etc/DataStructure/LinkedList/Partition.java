@@ -1,4 +1,4 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 
 // 값으로 나누기
 // 특정 값보다 x값이 작거나 같은 노드들을 왼편에 나열, 크거나 같은 노드들을 오른편에 나열

@@ -1,4 +1,4 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 
 // 중간 노드 삭제
 class LinkedList4 extends LinkedList {

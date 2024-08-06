@@ -1,4 +1,4 @@
-package etc.Tree;
+package etc.DataStructure.Tree;
 
 import java.util.NoSuchElementException;
 import java.util.Random;

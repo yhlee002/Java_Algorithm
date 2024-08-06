@@ -1,4 +1,4 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 
 class LinkedList6 extends LinkedList {
     LinkedList6 getSumDigit(LinkedList ll2) {

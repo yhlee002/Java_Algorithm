@@ -1,7 +1,7 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 
 // 뒤에서 K번째 노드 찾기
-import etc.LinkedList.LinkedList.Node;
+import etc.DataStructure.LinkedList.LinkedList.Node;
 
 class LinkedList3 extends LinkedList {
     Node getKthNode(Node first, int idx) {

@@ -1,4 +1,4 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 /*
 * LinkedList 중복값 제거 문제(별도의 버퍼를 사용하지 않음)
 * removeDups만 별도 구현하기 위해 기존 LinkedList 상속

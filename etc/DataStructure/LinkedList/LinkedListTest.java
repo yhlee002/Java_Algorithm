@@ -1,4 +1,4 @@
-package etc.LinkedList;
+package etc.DataStructure.LinkedList;
 
 class LinkedList {
     Node header;
