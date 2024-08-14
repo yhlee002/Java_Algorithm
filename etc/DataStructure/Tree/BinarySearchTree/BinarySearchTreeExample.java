@@ -16,13 +16,16 @@ public class BinarySearchTreeExample {
     static class Tree {
         Node root;
 
+        public Node search(int key) {
+            return search(root, key);
+        }
+
         public Node search(Node node, int key) {
-            if (node.data > key) {
+            if (node == null || node.data == key) return node;
+            else if (node.data > key) {
                 return search(node.left, key);
-            } else if (node.data < key) {
-                return search(node.right, key);
             } else {
-                return node;
+                return search(node.right, key);
             }
         }
 
